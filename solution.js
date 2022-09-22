@@ -23,3 +23,15 @@ export const listToObject = (objectsArray) => {
   });
   return result;
 };
+
+export const objectToList = (object) => {
+  let result = [];
+  for (const [name, value] of Object.entries(object)) {
+    const clonedValue =
+      typeof value === "object" && !Array.isArray(value) && value !== null
+        ? { ...value }
+        : value;
+    result = [...result, { name, value: clonedValue }];
+  }
+  return result;
+};
