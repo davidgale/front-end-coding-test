@@ -7,3 +7,19 @@ export const add = (...args) => {
     return sum;
   }
 };
+
+export const listToObject = (objectsArray) => {
+  let result = {};
+  objectsArray.forEach((object) => {
+    const { name, value } = object;
+    const clonedValue =
+      typeof value === "object" && !Array.isArray(value) && value !== null
+        ? { ...value }
+        : value;
+    result = {
+      ...result,
+      [`${name}`]: clonedValue,
+    };
+  });
+  return result;
+};
